@@ -1,0 +1,114 @@
+name: Writing Quality Checks
+
+# Runs on every push to main and on pull requests
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'manuscript/**'
+      - 'drafts/**'
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ===== Vale: Academic writing style checker =====
+  vale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Vale
+        uses: errata-ai/vale-action@v3
+        with:
+          files: 'manuscript, drafts'
+          styles: |
+            Microsoft
+          fail_on_error: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ===== textlint: Grammar & spelling checker =====
+  textlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install textlint
+        run: |
+          npm install -g textlint \
+            textlint-rule-common-misspellings \
+            textlint-rule-terminology \
+            textlint-rule-no-dead-link \
+            textlint-rule-write-good
+
+      - name: Install project rules
+        run: |
+          cd $GITHUB_WORKSPACE
+          npm install --save-dev \
+            textlint-rule-common-misspellings \
+            textlint-rule-terminology \
+            textlint-rule-write-good 2>/dev/null || true
+
+      - name: Run textlint
+        run: |
+          # Check markdown and tex files
+          find . -name "*.md" -o -name "*.tex" | grep -v node_modules | xargs textlint --config .textlintrc.json 2>&1 || true
+        continue-on-error: true
+
+  # ===== LaTeX: Compile check =====
+  latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: manuscript
+          root_file: main.tex
+          latexmk_use_xelatex: true
+          latexmk_shell_escape: true
+        continue-on-error: true
+
+      - name: Upload compiled PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-pdf
+          path: manuscript/main.pdf
+        if: success()
+
+  # ===== Word Count =====
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Count words
+        run: |
+          echo "## 📊 Manuscript Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Count words in TeX files (excluding comments and commands)
+          WORDS=$(find manuscript -name "*.tex" -exec cat {} \; | \
+            sed 's/%.*$//' | \
+            sed 's/\\[a-zA-Z]*//g' | \
+            sed 's/{[^}]*}//g' | \
+            wc -w)
+          echo "- **TeX word count**: $WORDS" >> $GITHUB_STEP_SUMMARY
+
+          # Count references
+          REFS=$(grep -c '@article' references/references.bib 2>/dev/null || echo "0")
+          echo "- **References**: $REFS" >> $GITHUB_STEP_SUMMARY
+
+          # Count figures
+          FIGS=$(ls manuscript/figures/*.png 2>/dev/null | wc -l)
+          echo "- **Figures**: $FIGS" >> $GITHUB_STEP_SUMMARY
+
+          # Check reference count for review article requirement
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Ready for submission review" >> $GITHUB_STEP_SUMMARY

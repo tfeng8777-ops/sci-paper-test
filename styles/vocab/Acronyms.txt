@@ -1,0 +1,81 @@
+# Accepted Acronyms in Biomedical/Nanomedicine Literature
+
+PELNs - plant-derived exosome-like nanovesicles
+PDEVs - plant-derived extracellular vesicles
+EVs - extracellular vesicles
+RNAi - RNA interference
+miRNA - microRNA
+siRNA - small interfering RNA
+mRNA - messenger RNA
+lncRNA - long non-coding RNA
+circRNA - circular RNA
+mtDNA - mitochondrial DNA
+
+DOX - doxorubicin
+PTX - paclitaxel
+TMZ - temozolomide
+5-FU - 5-fluorouracil
+
+EGFR - epidermal growth factor receptor
+HER2 - human epidermal growth factor receptor 2
+PD-L1 - programmed death-ligand 1
+PD-1 - programmed cell death protein 1
+CTLA-4 - cytotoxic T-lymphocyte-associated protein 4
+
+PI3K - phosphoinositide 3-kinase
+Akt - protein kinase B
+mTOR - mammalian target of rapamycin
+STAT3 - signal transducer and activator of transcription 3
+
+ROS - reactive oxygen species
+TNF-α - tumor necrosis factor alpha
+IL-6 - interleukin-6
+TGF-β - transforming growth factor beta
+
+BBB - blood-brain barrier
+BTB - blood-tumor barrier
+GI - gastrointestinal
+
+DLS - dynamic light scattering
+NTA - nanoparticle tracking analysis
+TEM - transmission electron microscopy
+Cryo-EM - cryogenic electron microscopy
+SEM - scanning electron microscopy
+
+HPLC - high-performance liquid chromatography
+SEC - size exclusion chromatography
+UC - ultracentrifugation
+
+TNBC - triple-negative breast cancer
+NSCLC - non-small cell lung cancer
+CRC - colorectal cancer
+GBM - glioblastoma multiforme
+
+FDA - Food and Drug Administration
+EMA - European Medicines Agency
+GMP - good manufacturing practice
+
+IF - immunofluorescence
+IHC - immunohistochemistry
+WB - western blot
+qPCR - quantitative polymerase chain reaction
+ELISA - enzyme-linked immunosorbent assay
+FACS - fluorescence-activated cell sorting
+
+EPR - enhanced permeability and retention
+PEG - polyethylene glycol
+FA - folic acid
+
+cGAS - cyclic GMP-AMP synthase
+STING - stimulator of interferon genes
+TLR - toll-like receptor
+NF-κB - nuclear factor kappa B
+
+ZO-1 - zonula occludens-1
+Dmt1 - divalent metal transporter 1
+TAB1 - TGF-beta activated kinase 1 binding protein 1
+LDLRAP1 - low density lipoprotein receptor adaptor protein 1
+TCF7 - transcription factor 7
+ACACA - acetyl-CoA carboxylase alpha
+IRS1 - insulin receptor substrate 1
+P-gp - P-glycoprotein

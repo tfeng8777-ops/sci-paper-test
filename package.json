@@ -1,0 +1,26 @@
+{
+  "name": "plant-exosome-rna-review",
+  "version": "1.0.0",
+  "description": "Plant-derived exosome-like nanoparticles in cancer RNA therapy - Review manuscript for Journal of Nanobiotechnology",
+  "private": true,
+  "scripts": {
+    "lint": "textlint 'manuscript/**/*.tex' 'drafts/**/*.md'",
+    "vale": "vale manuscript drafts",
+    "wordcount": "find manuscript -name '*.tex' -exec cat {} \\; | sed 's/%.*$//' | wc -w",
+    "check": "npm run vale && npm run lint"
+  },
+  "devDependencies": {
+    "textlint": "^14.0.0",
+    "textlint-rule-common-misspellings": "^1.0.1",
+    "textlint-rule-no-dead-link": "^5.2.0",
+    "textlint-rule-terminology": "^4.0.0",
+    "textlint-rule-write-good": "^2.0.0"
+  },
+  "keywords": [
+    "academic-writing",
+    "nanomedicine",
+    "exosome",
+    "rna-therapy",
+    "cancer"
+  ]
+}

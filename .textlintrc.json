@@ -1,0 +1,42 @@
+{
+  "rules": {
+    "common-misspellings": true,
+    "terminology": {
+      "defaultTerms": true,
+      "skipTechnicals": false
+    },
+    "write-good": {
+      "passive": true,
+      "adverb": true,
+      "tooWordy": true,
+      "weasel": true,
+      "cliches": true,
+      "thereIs": true,
+      "eprime": false
+    },
+    "no-dead-link": {
+      "checkRelative": false
+    }
+  },
+  "filters": {
+    "comments": true,
+    "allowlist": [
+      "exosome*",
+      "nanovesicle*",
+      "nanoparticle*",
+      "siRNA",
+      "miRNA",
+      "mRNA",
+      "lncRNA",
+      "circRNA",
+      "PELNs",
+      "PDEVs",
+      "endocytosis",
+      "macropinocytosis",
+      "extracellular",
+      "biodistribution",
+      "immunogenicity",
+      "biocompatibility"
+    ]
+  }
+}
